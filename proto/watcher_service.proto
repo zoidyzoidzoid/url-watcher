@@ -1,0 +1,33 @@
+syntax = "proto3";
+package example;
+
+import "google/api/annotations.proto";
+
+message Food {
+  string name = 1;
+}
+
+message FoodRequest {
+  uint64 version = 1;
+}
+
+message FoodResponse {
+  uint64 version = 1;
+  bool delta = 2;
+  repeated Food items = 3;
+}
+
+service WatcherService {
+  rpc ListFoods(FoodRequest) returns (FoodResponse) {
+    option (google.api.http) = {
+      post: "/v1/foods"
+      body: "*"
+    };
+  }
+  rpc WatchFoods(FoodRequest) returns (stream FoodResponse) {
+    option (google.api.http) = {
+      post: "/v1/foods/stream"
+      body: "*"
+    };
+  }
+}
