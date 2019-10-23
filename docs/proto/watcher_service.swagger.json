@@ -22,7 +22,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/exampleFoodResponse"
+              "$ref": "#/definitions/watcherFoodResponse"
             }
           }
         },
@@ -32,7 +32,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/exampleFoodRequest"
+              "$ref": "#/definitions/watcherFoodRequest"
             }
           }
         ],
@@ -48,7 +48,7 @@
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/exampleFoodResponse"
+              "$ref": "#/x-stream-definitions/watcherFoodResponse"
             }
           }
         },
@@ -58,7 +58,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/exampleFoodRequest"
+              "$ref": "#/definitions/watcherFoodRequest"
             }
           }
         ],
@@ -69,42 +69,6 @@
     }
   },
   "definitions": {
-    "exampleFood": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "exampleFoodRequest": {
-      "type": "object",
-      "properties": {
-        "version": {
-          "type": "string",
-          "format": "uint64"
-        }
-      }
-    },
-    "exampleFoodResponse": {
-      "type": "object",
-      "properties": {
-        "version": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "delta": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/exampleFood"
-          }
-        }
-      }
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -141,20 +105,56 @@
           }
         }
       }
+    },
+    "watcherFood": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "watcherFoodRequest": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "watcherFoodResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "delta": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/watcherFood"
+          }
+        }
+      }
     }
   },
   "x-stream-definitions": {
-    "exampleFoodResponse": {
+    "watcherFoodResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/exampleFoodResponse"
+          "$ref": "#/definitions/watcherFoodResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of exampleFoodResponse"
+      "title": "Stream result of watcherFoodResponse"
     }
   }
 }
